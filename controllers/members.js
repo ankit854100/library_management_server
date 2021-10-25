@@ -52,8 +52,24 @@ export const updateUser = (req, res) => {
     }
 }
 
+export const deleteuser = (req, res) => {
+    const {email} = req.params;
+    const newArray = memberList.filter((item) => item.email !== email);
+    memberList.length = 0;
+    for(let i in newArray){
+        memberList.push(newArray[i]);
+    }
+    // console.log(memberList);
+    try {
+        res.json(memberList);  
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export function paginatedResult(model){
     return (req, res, next) => {
+        console.log(model);
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
 

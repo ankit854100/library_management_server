@@ -5,7 +5,7 @@ import cors from 'cors';
 import bookRouter from './routes/books.js';
 import memberRouter from './routes/members.js';
 
-import {memberList, paginatedResult, getAllMembers, addUser} from "./controllers/members.js"
+import {memberList, paginatedResult, getAllMembers, addUser, deleteuser} from "./controllers/members.js"
 
 const app = express();
 
@@ -22,6 +22,8 @@ app.get("/member", paginatedResult(memberList), (req, res) => {
 });
 
 app.post("/member", addUser);
+
+app.delete("/member/:email", deleteuser);
 
 app.use("/book", bookRouter);
 
